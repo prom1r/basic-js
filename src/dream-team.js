@@ -14,7 +14,11 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  */
 export default function createDreamTeam(members) {
+    if (!Array.isArray(members)) {
+        return false
+    }
     let answer = members.filter(elem => (elem === String(elem)))
-    return answer.sort().map(elem => elem[0]).join('')
+    let result = answer.map(elem => elem.replace(/\s+/g, '')[0])
+    return result.join('').toUpperCase().split('').sort().join('')
 
 }
