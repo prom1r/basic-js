@@ -14,7 +14,15 @@ import { NotImplementedError } from '../extensions/index.js';
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-export default function isMAC48Address(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function isMAC48Address(n) {
+    const numbers = n.split('-');
+    if (numbers.length !== 6) {
+        return false;
+    }
+
+    return numbers.every(n => isHex(n[0]) && isHex(n[1]));
+}
+
+function isHex(n) {
+    return (n >= '0' && n <= '9') || (n >= 'A' && n <= 'F');
 }
